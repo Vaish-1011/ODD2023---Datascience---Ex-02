@@ -1,4 +1,4 @@
-# Ex02-Outlier
+![image](https://github.com/Vaish-1011/ODD2023---Datascience---Ex-02/assets/135130074/5b993918-ad46-4ea7-b522-f31b9177a8ad)# Ex02-Outlier
 You are given bhp.csv which contains property prices in the city of banglore, India. You need to examine price_per_sqft column and do following,
 
 (1) Remove outliers using IQR
@@ -134,6 +134,46 @@ df2 = df1[z<3]
 df2
 ```
 ![image](https://github.com/Vaish-1011/ODD2023---Datascience---Ex-02/assets/135130074/ea3cd452-e6f1-424d-ae10-5e0304850dd5)
+
+```
+from google.colab import files
+uploaded = files.upload()
+```
+![image](https://github.com/Vaish-1011/ODD2023---Datascience---Ex-02/assets/135130074/2f364b31-ca6a-410a-940f-e152c6237c11)
+```
+df = pd.read_csv("heights.csv")
+q1 = df['height'].quantile(0.25)
+q2 = df['height'].quantile(0.5)
+q3 = df['height'].quantile(0.75)
+iqr = q3-q1
+iqr
+```
+![image](https://github.com/Vaish-1011/ODD2023---Datascience---Ex-02/assets/135130074/31e84543-2e24-4ac6-babf-3b897de05fef)
+```
+low = q1 - 1.5*iqr
+low
+```
+![image](https://github.com/Vaish-1011/ODD2023---Datascience---Ex-02/assets/135130074/efadafd3-56fd-4d33-93f1-f2faa1fbf207)
+```
+high = q3 + 1.5*iqr
+high
+```
+![image](https://github.com/Vaish-1011/ODD2023---Datascience---Ex-02/assets/135130074/42671517-822a-4e56-a9c2-ff36efcdf1a3)
+```
+df1 = df[((df['height'] >=low)& (df['height'] <=high))]
+df1
+```
+![image](https://github.com/Vaish-1011/ODD2023---Datascience---Ex-02/assets/135130074/4533fa2e-bb09-4ced-8042-c89f05f01914)
+```
+z = np.abs(stats.zscore(df['height']))
+z
+```
+![image](https://github.com/Vaish-1011/ODD2023---Datascience---Ex-02/assets/135130074/29d6abf2-8194-4cba-820d-016360331e79)
+```
+df1 = df[z<3]
+df1
+```
+![image](https://github.com/Vaish-1011/ODD2023---Datascience---Ex-02/assets/135130074/ef493174-a3ca-44fc-89ad-1889d4670f47)
 
 
 
